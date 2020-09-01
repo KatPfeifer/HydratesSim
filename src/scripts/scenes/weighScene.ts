@@ -21,12 +21,12 @@ export default class weighScene extends Phaser.Scene{
     private overlapping: boolean;
     private nextButton: button;
     private warningText: GameObjects.Text;
-    private addition1: moveableThing;
-    private addition2: moveableThing;
-    private addition3: moveableThing;
-    private addition4: moveableThing;
-    private addition5: moveableThing;
+    private addition1: dish;
+    private addition2: dish;
+    private addition3: dish;
+    private addition4: dish;
     private dishes: GameObjects.Group;
+    private warning2: GameObjects.Text;
 
     constructor(){
         super({key: "weighScene"});
@@ -42,6 +42,9 @@ export default class weighScene extends Phaser.Scene{
         this.warningText=this.add.text(20, 20, "Use good weighing technique!", {fontFamily: "calibri", fill: "f00707", fontSize: "20px"});
         this.warningText.setTintFill(0xf00707);
         this.warningText.setAlpha(0.0);
+        this.warning2=this.add.text(20, 20, "Add compound to the evaporating dish!", {fontFamily: "calibri", fill: "f00707", fontSize: "20px"});
+        this.warning2.setTintFill(0xf00707);
+        this.warning2.setAlpha(0.0);
 
         this.balance=this.add.image(200, 225, "balance");
         this.balance.setScale(0.80);
@@ -66,6 +69,7 @@ export default class weighScene extends Phaser.Scene{
         this.resetButton.on('pointerdown', ()=>this.reset(), this);
 
         this.nextButton = new button(this, 750, 375, "nextButton", 0.7);
+        this.nextButton.on("pointerdown", ()=>this.goToDry(), this);
 
         this.createDishes();
     }
@@ -75,9 +79,8 @@ export default class weighScene extends Phaser.Scene{
         this.addition2=new dish(this, "addition2");
         this.addition3=new dish(this, "addition3");
         this.addition4=new dish(this, "addition4");
-        this.addition5=new dish(this, "addition5");
 
-        this.dishes= this.physics.add.group([this.addition1, this.addition2, this.addition3, this.addition4, this.addition5]);
+        this.dishes= this.physics.add.group([this.addition1, this.addition2, this.addition3, this.addition4]);
 
         this.physics.add.overlap(this.hitBox, this.dishes, this.evapHitOverlap, undefined, this);
     }
@@ -122,7 +125,7 @@ export default class weighScene extends Phaser.Scene{
             return;
         }
 
-        if (name == "add"&&this.additionNumber<5){
+        if (name == "add"&&this.additionNumber<4){
             this.additionNumber++;
             this.changeCompoundMass();
         }
@@ -142,9 +145,6 @@ export default class weighScene extends Phaser.Scene{
         if (this.additionNumber==4){
             this.addition4.setAlpha(1.0);
         }
-        if (this.additionNumber==5){
-            this.addition5.setAlpha(1.0);
-        }
     }
 
     changeCompoundMass(){
@@ -159,6 +159,10 @@ export default class weighScene extends Phaser.Scene{
         this.evapDish.y=300;
         this.resetDishImages();
         this.evapDish.setAlpha(1.0);
+        this.addition1.resetPosition();
+        this.addition2.resetPosition();
+        this.addition3.resetPosition();
+        this.addition4.resetPosition();
     }
 
     resetDishImages(){
@@ -167,11 +171,28 @@ export default class weighScene extends Phaser.Scene{
         this.addition2.setAlpha(0.0);
         this.addition3.setAlpha(0.0);
         this.addition4.setAlpha(0.0);
-        this.addition5.setAlpha(0.0);
 
     }
 
     hideWarning(){
         this.warningText.setAlpha(0.0);
+    }
+
+    hideText(){
+        this.warning2.setAlpha(0.0);
+    }
+
+    goToDry(){
+        if (this.additionNumber==0){
+            this.warning2.setAlpha(1.0);
+            this.time.addEvent({
+                delay: 800,
+                callback: this.hideText,
+                callbackScope: this,
+                loop: false
+            })
+            return;
+        }
+        this.scene.start("dryScene", [this.hydrateNumber, this.additionNumber, this.mass, this.massEvapDish]);
     }
 }
