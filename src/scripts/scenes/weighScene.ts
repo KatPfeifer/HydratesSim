@@ -154,6 +154,8 @@ export default class weighScene extends Phaser.Scene{
 
     reset(){
         this.massLabel.text=0.0001.toFixed(2) + " g";
+        this.mass=0.0001;
+        this.additionNumber=0;
 
         this.evapDish.x=520;
         this.evapDish.y=300;

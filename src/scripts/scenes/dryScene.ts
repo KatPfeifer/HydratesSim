@@ -17,6 +17,9 @@ export default class dryScene extends Phaser.Scene{
     private additionNumber: number;
     private hitOval: GameObjects.Image;
     private warningMessage: GameObjects.Text;
+    private flame: GameObjects.Image;
+    private nextButton: button;
+    private givenData: any;
 
     constructor(){
         super({key: "dryScene"});
@@ -42,6 +45,13 @@ export default class dryScene extends Phaser.Scene{
         this.warningMessage = this.add.text(50, 20, "Put the evaporating dish on the tripod \nstand before lighting the burner", {fontFamily: "calibri", fill: "000000", fontSize: "20px"});
         this.warningMessage.setTintFill(0xf00707);
         this.warningMessage.setAlpha(0.0);
+
+        this.flame=this.add.image(300, 204, "flame");
+        this.flame.setScale(0.5);
+        this.flame.setAlpha(0.0);
+
+        this.nextButton = new button(this, 750, 375, "nextButton", 0.7);
+        this.nextButton.on("pointerdown", ()=>this.goToNext(), this);
 
         this.createEvapDishImage();
     }
@@ -89,13 +99,14 @@ export default class dryScene extends Phaser.Scene{
 
     init(data){
         console.log("in init");
-        let ar = data;
-        this.additionNumber=ar[1];
+        this.givenData=data;
+        this.additionNumber=this.givenData[1];
 
     }
 
     burnerAction(){
         if (this.physics.overlap(this.dish, this.hitOval)){
+            this.flame.setAlpha(1.0);
             this.dryCompound();
         }
         else {
@@ -165,5 +176,9 @@ export default class dryScene extends Phaser.Scene{
     dry45(){
         this.dish4.setAlpha(0.0);
         this.dish5.setAlpha(1.0);
+    }
+
+    goToNext(){
+        this.scene.start("finalScene", this.givenData);
     }
 }
