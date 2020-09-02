@@ -39,12 +39,14 @@ export default class weighScene extends Phaser.Scene{
         this.blackBox.setTintFill(0x2a2a2e);
         this.hitBox=this.physics.add.image(200, 230, "blackBox");
         this.hitBox.setScale(0.3);
-        this.warningText=this.add.text(20, 20, "Use good weighing technique!", {fontFamily: "calibri", fill: "f00707", fontSize: "20px"});
+        this.warningText=this.add.text(20, 60, "Use good weighing technique!", {fontFamily: "calibri", fill: "f00707"});
         this.warningText.setTintFill(0xf00707);
         this.warningText.setAlpha(0.0);
-        this.warning2=this.add.text(20, 20, "Add compound to the evaporating dish!", {fontFamily: "calibri", fill: "f00707", fontSize: "20px"});
+        this.warning2=this.add.text(20, 60, "Add compound to the evaporating dish!", {fontFamily: "calibri", fill: "f00707"});
         this.warning2.setTintFill(0xf00707);
         this.warning2.setAlpha(0.0);
+
+        this.add.text(20, 20, "Find the mass of the evaporating dish, then add compound and determine the mass of \nthe compound. Make sure to use proper technique!", {fontFamily: "calibri", fill: "000000"});
 
         this.balance=this.add.image(200, 225, "balance");
         this.balance.setScale(0.80);

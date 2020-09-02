@@ -29,24 +29,26 @@ export default class dryScene extends Phaser.Scene{
         console.log("in create");
         this.blackBox=this.add.image(400, 350, "blackBox");
         this.blackBox.setTintFill(0x2a2a2e);
-        this.tripodStand=this.add.image(300, 250, "tripodStand");
+        this.tripodStand=this.add.image(400, 250, "tripodStand");
         this.tripodStand.setScale(0.55);
 
-        this.bunsenBurner=this.add.image(300, 300, "bunsenBurner");
+        this.bunsenBurner=this.add.image(400, 300, "bunsenBurner");
         this.bunsenBurner.setScale(0.35);
 
-        this.burnerButton=new button(this, 100, 350, "burnerButton", 0.7);
+        this.burnerButton=new button(this, 150, 350, "burnerButton", 0.7);
         this.burnerButton.on("pointerdown", ()=>this.burnerAction(), this);
 
-        this.hitOval=this.physics.add.image(300, 150, "hitOval");
+        this.hitOval=this.physics.add.image(400, 150, "hitOval");
         this.hitOval.setScale(0.3);
         this.hitOval.setAlpha(0.0);
 
-        this.warningMessage = this.add.text(50, 20, "Put the evaporating dish on the tripod \nstand before lighting the burner", {fontFamily: "calibri", fill: "000000", fontSize: "20px"});
+        this.warningMessage = this.add.text(400, 20, "Put the evaporating dish on the tripod \nstand before lighting the burner", {fontFamily: "calibri", fill: "000000", fontSize: "16px"});
         this.warningMessage.setTintFill(0xf00707);
         this.warningMessage.setAlpha(0.0);
 
-        this.flame=this.add.image(300, 204, "flame");
+        this.add.text(20, 20, "Use the bunsen burner to dry \nthe Copper (II) Sulfate Hydrate. \nWhen this compound is heated \nin air, it loses its water to form \nwhite copper (II) sulfate crystals.", {fontFamily: "calibri", fill: "000000"});
+
+        this.flame=this.add.image(400, 204, "flame");
         this.flame.setScale(0.5);
         this.flame.setAlpha(0.0);
 
@@ -95,6 +97,7 @@ export default class dryScene extends Phaser.Scene{
             this.dish5= new dish(this, "addition4-5"); 
         }
         this.dish.setAlpha(1.0);
+        this.dish.x=620;
     }
 
     init(data){
@@ -112,7 +115,7 @@ export default class dryScene extends Phaser.Scene{
         else {
             this.warningMessage.setAlpha(1.0);
             this.time.addEvent({
-                delay: 800,
+                delay: 2000,
                 callback: this.hideWarning,
                 callbackScope: this,
                 loop: false 

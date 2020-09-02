@@ -51,9 +51,12 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("hitOval", "assets/images/oval.png");
     this.load.image("flame", "assets/images/flame.png");
 
+    this.load.image("copperSulfate", "assets/images/copperSulfate.png");
+    this.load.image("equation", "assets/images/equation.png");
+
   }
 
   create() {
-    this.scene.start('MainScene', [4, 2, 1.36, 22.00]);
+    this.scene.start('finalScene', [4, 2, 1.36, 22.00]);
   }
 }

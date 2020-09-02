@@ -14,6 +14,7 @@ export default class finalScene extends Phaser.Scene{
     private additionNumber: number;
     private dishMass: number;
     private overlapping: boolean;
+    private equation: GameObjects.Image;
 
 
     constructor(){
@@ -31,8 +32,13 @@ export default class finalScene extends Phaser.Scene{
         this.massLabel=this.add.bitmapText(220, 300, "calibriFont", "0.00 g");
         this.massLabel.setFontSize(40);
 
+        this.add.text(20, 20, "Find the mass of the anhydrous Copper (II) Sulfate and \nuse this to determine the starting hydrate", {fontFamily: "calibri", fill: "000000"});
+
         this.createDish();
         this.findCuSO4Mass();
+
+        this.equation=this.add.image(600, 40, "equation");
+        this.equation.setScale(0.6);
 
         this.physics.add.overlap(this.dish, this.hitBox, ()=>this.dishBoxOverlap(), undefined, this)
     }
