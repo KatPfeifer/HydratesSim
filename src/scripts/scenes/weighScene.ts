@@ -2,6 +2,7 @@ import { GameObjects } from "phaser";
 import moveableThing from "../objects/moveableThing";
 import button from "../objects/button";
 import dish from "../objects/dish";
+import buttonOutline from "../objects/buttonOutline";
 
 export default class weighScene extends Phaser.Scene{
 
@@ -27,6 +28,11 @@ export default class weighScene extends Phaser.Scene{
     private addition4: dish;
     private dishes: GameObjects.Group;
     private warning2: GameObjects.Text;
+    private nextOutline: buttonOutline;
+    private addOutline: buttonOutline;
+    private resetOutline: buttonOutline;
+    private removeButton: button;
+    private removeOutline: buttonOutline;
 
     constructor(){
         super({key: "weighScene"});
@@ -66,12 +72,27 @@ export default class weighScene extends Phaser.Scene{
     
         this.addButton = new button(this, 700, 40, "addButton", 0.7);
         this.addButton.on('pointerdown', ()=>this.changeAdditions("add"), this);
+        this.addOutline= new buttonOutline(this, 700, 40, "addButton", 0.7, 0x026156);
+        this.addButton.on('pointerover', ()=>this.addOutline.enterHoverState(), this);
+        this.addButton.on('pointerout', ()=>this.addOutline.exitHoverState("word"), this);
+
+        this.removeButton = new button(this, 700, 80, "removeButton", 0.7);
+        this.removeButton.on('pointerdown', ()=>this.changeAdditions("remove"), this);
+        this.removeOutline= new buttonOutline(this, 700, 80, "removeButton", 0.7, 0x026156);
+        this.removeButton.on('pointerover', ()=>this.removeOutline.enterHoverState(), this);
+        this.removeButton.on('pointerout', ()=>this.removeOutline.exitHoverState("word"), this);
     
         this.resetButton = new button(this, 45, 385, "resetButton", 0.7);
         this.resetButton.on('pointerdown', ()=>this.reset(), this);
+        this.resetOutline = new buttonOutline(this, 45, 385, "resetButton", 0.7, 0x400003);
+        this.resetButton.on('pointerover', ()=>this.resetOutline.enterHoverState(), this);
+        this.resetButton.on('pointerout', ()=>this.resetOutline.exitHoverState("word"), this);
 
         this.nextButton = new button(this, 750, 375, "nextButton", 0.7);
         this.nextButton.on("pointerdown", ()=>this.goToDry(), this);
+        this.nextOutline = new buttonOutline(this, 750, 375, "nextButton", 0.7, 0x006326);
+        this.nextButton.on('pointerover', ()=>this.nextOutline.enterHoverState(), this);
+        this.nextButton.on('pointerout', ()=>this.nextOutline.exitHoverState("word"), this);
 
         this.createDishes();
     }
@@ -96,7 +117,7 @@ export default class weighScene extends Phaser.Scene{
         }
     }
     pickHydrateNumber(){
-        this.hydrateNumber=Math.round(Math.random()*6);
+        this.hydrateNumber=1+Math.round(Math.random()*5);
         console.log("Hydrate number:" +this.hydrateNumber);
     }
 
@@ -131,9 +152,13 @@ export default class weighScene extends Phaser.Scene{
             this.additionNumber++;
             this.changeCompoundMass();
         }
+        if (name == "remove"&&this.additionNumber>0){
+            this.additionNumber--;
+            this.changeCompoundMass();
+        }
         this.resetDishImages();
         if (this.additionNumber==0){
-            this.evapDish.setAlpha(0.0);
+            this.evapDish.setAlpha(1.0);
         }
         if (this.additionNumber==1){
             this.addition1.setAlpha(1.0);
@@ -150,7 +175,12 @@ export default class weighScene extends Phaser.Scene{
     }
 
     changeCompoundMass(){
-        this.mass=1.5*this.additionNumber + Math.round(Math.random()*100)/100;
+        if (this.additionNumber==0){
+            this.mass=0.00001;
+        }
+        else {
+            this.mass=1.5*this.additionNumber + Math.round(Math.random()*100)/100;
+        }
         console.log("compound mass: " + this.mass.toFixed(2));
     }
 

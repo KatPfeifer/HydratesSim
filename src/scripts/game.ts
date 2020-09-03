@@ -26,6 +26,9 @@ const config: GameConfig = {
             debug: false,
             //gravity: { y: 400 }
         }
+    },
+    dom:{
+        createContainer: true,
     }
 };
 

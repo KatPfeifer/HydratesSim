@@ -53,10 +53,14 @@ export default class PreloadScene extends Phaser.Scene {
 
     this.load.image("copperSulfate", "assets/images/copperSulfate.png");
     this.load.image("equation", "assets/images/equation.png");
+    this.load.image("restartButton", "assets/images/restartButton.png");
+    this.load.image("backButton", "assets/images/backButton.png");
+
+    this.load.html("inputForm", "assets/text/inputform.html");
 
   }
 
   create() {
-    this.scene.start('MainScene');
+    this.scene.start('dryScene', [4, 1, 1.34, 22.50]);
   }
 }
