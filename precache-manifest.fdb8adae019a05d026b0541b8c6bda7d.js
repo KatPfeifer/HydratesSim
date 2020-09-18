@@ -144,6 +144,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/images/addition5.png"
   },
   {
+    "revision": "d40d1b70a82725c1c7357c2192d1c459",
+    "url": "assets/images/backButton.png"
+  },
+  {
     "revision": "059ef4b83ca1dd08c10c1e4aeea9e883",
     "url": "assets/images/balance.png"
   },
@@ -156,7 +160,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/images/bunsenBurner.png"
   },
   {
-    "revision": "a586f534ceade9665f152b3c531f0862",
+    "revision": "64428b9ea78ca20c1ce3a579f95bd07f",
     "url": "assets/images/burnerButton.png"
   },
   {
@@ -196,6 +200,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/images/resetButton.png"
   },
   {
+    "revision": "b51008c29f3a141a076ea5cb271764ef",
+    "url": "assets/images/restartButton.png"
+  },
+  {
     "revision": "0e6e5aba5cd76f3937e3209bc789f9ef",
     "url": "assets/images/startButton.png"
   },
@@ -204,19 +212,23 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/images/tripodStand.png"
   },
   {
+    "revision": "b07af5823579a071d3f6c7c649be03ae",
+    "url": "assets/text/inputform.html"
+  },
+  {
     "revision": "53cefca2a0f75654486b180949686165",
     "url": "favicon.ico"
   },
   {
-    "revision": "df3c08b403db567d6e98a8b8eced16bd",
+    "revision": "998a3c81ccd17c22dccc375059dcc970",
     "url": "index.html"
   },
   {
-    "revision": "62339df4a43843c630c9",
-    "url": "main.7c0a117c9ad606547f8a.bundle.js"
+    "revision": "929a6dab35045af8d2ac",
+    "url": "main.7a46ecd4f0e482a7a63b.bundle.js"
   },
   {
-    "revision": "003187cab0ecf7a20e343e2ba6db4a34",
+    "revision": "582eb106308cbe24543f4c5977520bf4",
     "url": "manifest.json"
   },
   {
@@ -224,7 +236,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "sw.js"
   },
   {
-    "revision": "fc5f57908802f38d37a6",
-    "url": "vendors.eafc720a95c7173de7f4.bundle.js"
+    "revision": "40cc54fe55dd3dc220ae",
+    "url": "vendors.e7ece582d048c2d9f7a2.bundle.js"
   }
 ]);

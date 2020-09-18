@@ -1,4 +1,4 @@
-importScripts("precache-manifest.fdb8adae019a05d026b0541b8c6bda7d.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/HydratesSim/finalprecache-manifest.f3ee3416b8d252b3e3ab8d2a8ef00539.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 /**
  * You should only modify this, if you know what you are doing.
