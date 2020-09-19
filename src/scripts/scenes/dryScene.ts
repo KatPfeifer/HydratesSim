@@ -71,7 +71,7 @@ export default class dryScene extends Phaser.Scene{
         this.nextWarning.setTintFill(0xf00707);
         this.nextWarning.setAlpha(0.0);
 
-        this.add.text(20, 20, "Use the bunsen burner to dry \nthe Copper (II) Sulfate Hydrate. \nWhen this compound is heated \nin air, it loses its water to form \nwhite copper (II) sulfate crystals.", {fontFamily: "calibri", fill: "000000"});
+        this.add.text(20, 20, "Use the Bunsen burner to dry \nthe Copper (II) Sulfate Hydrate. \nWhen this compound is heated \nin air, it loses its water to form \nwhite copper (II) sulfate crystals.", {fontFamily: "calibri", fill: "000000"});
 
         this.flame=this.add.image(400, 204, "flame");
         this.flame.setScale(0.5);
@@ -119,7 +119,7 @@ export default class dryScene extends Phaser.Scene{
         }
 
         if (this.additionNumber==4){
-            this.dish= new dish(this, "addition1");
+            this.dish= new dish(this, "addition4");
             this.dish1= new dish(this, "addition4-1");
             this.dish2= new dish(this, "addition4-2");
             this.dish3= new dish(this, "addition4-3");
